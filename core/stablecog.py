@@ -6,6 +6,12 @@ import random
 import requests
 import time
 import traceback
+
+# Change from original.
+import os
+from datetime import date
+#/ end change
+
 from PIL import Image, PngImagePlugin
 from discord import option
 from discord.ext import commands
@@ -496,13 +502,20 @@ class StableCog(commands.Cog, name='Stable Diffusion', description='Create image
                 metadata.add_text("parameters", png_response.json().get("info"))
                 str_parameters = png_response.json().get("info")
 
-                file_path = f'{settings.global_var.dir}/{epoch_time}-{queue_object.seed}-{count}.png'
+                #Orignal save path
+                #file_path = f'{settings.global_var.dir}/{epoch_time}-{queue_object.seed}-{count}.png'
 
+                #Modified save path to match Stable Diffusion's path set in settings
+                folder_name = today.strftime("%Y-%m-%d")
+                if not os.path.exists({settings.global_var.sd_dir}/folder_name):
+                    os.makedirs(folder_name)
+                file_path = f'{settings.global_var.sd_dir}/{folder_name}/{epoch_time}-{queue_object.seed}-{count}.png'
+                
                 # if we are using a batch we need to save the files to disk
                 if settings.global_var.save_outputs == 'True' or batch == True:
                     image.save(file_path, pnginfo=metadata)
                     print(f'Saved image: {file_path}')
-
+                    
                 if batch == True:
                     image_data = (image, file_path, str_parameters)
                     images.append(image_data)
