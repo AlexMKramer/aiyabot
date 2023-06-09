@@ -33,7 +33,10 @@ apipass = ""
 save_outputs = "True"
 
 # The directory to save outputs (default = "outputs")
-dir = "outputs"
+#dir = "outputs"
+
+# The parent directory that Stable Diffusion uses for txt2img outputs
+sd_dir = "outputs"
 
 # The limit of tasks a user can have waiting in queue (at least 1)
 queue_limit = 1
@@ -89,6 +92,7 @@ upscaler_1 = "ESRGAN_4x"
 class GlobalVar:
     url = ""
     dir = ""
+    sd_dir = ""
     wait_message = []
     wait_message_count = 0
     embed_color = discord.Colour.from_rgb(222, 89, 28)
