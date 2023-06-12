@@ -506,6 +506,7 @@ class StableCog(commands.Cog, name='Stable Diffusion', description='Create image
                 #file_path = f'{settings.global_var.dir}/{epoch_time}-{queue_object.seed}-{count}.png'
 
                 #Modified save path to match Stable Diffusion's path set in settings
+                today = date.today()
                 folder_name = today.strftime("%Y-%m-%d")
                 if not os.path.exists({settings.global_var.sd_dir}/folder_name):
                     os.makedirs(folder_name)
