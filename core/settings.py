@@ -33,7 +33,7 @@ apipass = ""
 save_outputs = "True"
 
 # The directory to save outputs (default = "outputs")
-#dir = "outputs"
+dir = "outputs"
 
 # The parent directory that Stable Diffusion uses for txt2img outputs
 sd_dir = "outputs"
