@@ -9,7 +9,7 @@ import traceback
 
 # Change from original.
 import os
-from datetime import date
+import datetime
 #/ end change
 
 from PIL import Image, PngImagePlugin
