@@ -506,11 +506,13 @@ class StableCog(commands.Cog, name='Stable Diffusion', description='Create image
                 #file_path = f'{settings.global_var.dir}/{epoch_time}-{queue_object.seed}-{count}.png'
 
                 #Modified save path to match Stable Diffusion's path set in settings
-                today = date.today()
-                folder_name = today.strftime("%Y-%m-%d")
-                if not os.path.exists({settings.global_var.sd_dir}/folder_name):
-                    os.makedirs(folder_name)
-                file_path = f'{settings.global_var.sd_dir}/{folder_name}/{epoch_time}-{queue_object.seed}-{count}.png'
+                
+                current_date = datetime.date.today().strftime("%Y-%m-%d")
+                
+                #folder_name = today.strftime("%Y-%m-%d")
+                if not os.path.exists(folder_path):
+                    os.makedirs(folder_path)
+                file_path = f'{folder_path}/{epoch_time}-{queue_object.seed}-{count}.png'
                 
                 # if we are using a batch we need to save the files to disk
                 if settings.global_var.save_outputs == 'True' or batch == True:
