@@ -508,7 +508,7 @@ class StableCog(commands.Cog, name='Stable Diffusion', description='Create image
                 #Modified save path to match Stable Diffusion's path set in settings
                 
                 current_date = datetime.date.today().strftime("%Y-%m-%d")
-                folder_path = {settings.global_var.sd_dir} + current_date
+                folder_path = settings.global_var.sd_dir + current_date
                 
                 #folder_name = today.strftime("%Y-%m-%d")
                 if not os.path.exists(folder_path):
