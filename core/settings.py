@@ -6,6 +6,9 @@ import random
 import requests
 import time
 import tomlkit
+
+import datetime
+
 from typing import Optional
 
 from core import queuehandler
@@ -254,7 +257,7 @@ def config_auth(config):
     global_var.url = config['url']
     global_var.dir = config['dir']
     # Added sd_dir global var
-    global_var.sd_dir = config['sd_dir']
+    global_var.sd_dir = config['sd_dir'] + datetime.date.today().strftime("%Y-%m-%d")
     global_var.username = config['user']
     global_var.password = config['pass']
     global_var.api_user = config['apiuser']
