@@ -523,7 +523,8 @@ class DownloadMenu(discord.ui.Select):
             if buttons_free:
                 files = []
                 for value in self.values:
-                    image_path = f'{settings.global_var.dir}/{value}'
+                    #image_path = f'{settings.global_var.dir}/{value}'
+                    image_path = f'{settings.global_var.sd_dir}/{value}'
                     file = discord.File(image_path, f'{value}')
                     files.append(file)
                 
@@ -557,7 +558,8 @@ class UpscaleMenu(discord.ui.Select):
                 if interaction.user.id != self.input_tuple[0].author.id:
                     buttons_free = False
             if buttons_free:
-                partial_path = f'{settings.global_var.dir}/{self.values[0]}'
+                #partial_path = f'{settings.global_var.dir}/{self.values[0]}'
+                partial_path = f'{settings.global_var.sd_dir}/{self.values[0]}'
                 full_path = os.path.join(os.getcwd(), partial_path)
                 init_image = 'file://' + full_path
                 ctx = self.input_tuple[0]
