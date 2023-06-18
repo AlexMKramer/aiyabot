@@ -205,7 +205,8 @@ class UpscaleCog(commands.Cog):
 
             # create safe/sanitized filename
             epoch_time = int(time.time())
-            file_path = f'{settings.global_var.dir}/{epoch_time}-x{queue_object.resize}-{self.file_name[0:120]}.png'
+            #file_path = f'{settings.global_var.dir}/{epoch_time}-x{queue_object.resize}-{self.file_name[0:120]}.png'
+            file_path = f'{settings.global_var.sd_dir}/{epoch_time}-x{queue_object.resize}-{self.file_name[0:120]}.png'
 
             # save local copy of image
             image_data = response_data['image']
