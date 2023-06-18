@@ -415,7 +415,8 @@ class InfoCog(commands.Cog):
             # Find files corresponding to each image ID
             files = []
             for id_num in image_ids:
-                image_path = f'{settings.global_var.dir}/{batch_id}-{id_num}.png'
+                #image_path = f'{settings.global_var.dir}/{batch_id}-{id_num}.png'
+                image_path = f'{settings.global_var.sd_dir}/{batch_id}-{id_num}.png'
                 try:
                     file = discord.File(image_path, f'{batch_id}-{id_num}.png')
                     files.append(file)
