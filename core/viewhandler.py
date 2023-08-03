@@ -412,7 +412,7 @@ class DrawView(View):
                 if settings.global_var.batch_buttons == "False":
                     new_seed[13] = [1, 1]
                 seed_tuple = tuple(new_seed)
-                new_style = random.choice(list(global_var.style_names.keys()))
+                new_style = random.choice(list(settings.global_var.style_names.keys()))
 
                 print(f'Remix -- {interaction.user.name}#{interaction.user.discriminator} -- Prompt: {seed_tuple[1]}')
 
@@ -434,9 +434,9 @@ class DrawView(View):
                         f'\nNew Seed:``{seed_tuple[10]}``'
                         f'\nNew Style:``{new_style}``')
             else:
-                await interaction.response.send_message("You can't use other people's 🎲!", ephemeral=True)
+                await interaction.response.send_message("You can't use other people's 🎨!", ephemeral=True)
         except Exception as e:
-            print('The dice roll button broke: ' + str(e))
+            print('The remix button broke: ' + str(e))
             # if interaction fails, assume it's because aiya restarted (breaks buttons)
             button.disabled = True
             await interaction.response.edit_message(view=self)
