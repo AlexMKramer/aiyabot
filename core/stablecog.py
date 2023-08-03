@@ -387,7 +387,7 @@ class StableCog(commands.Cog, name='Stable Diffusion', description='Create image
                 "alwayson_scripts": {
                     "refiner": {
                         "args": [
-                            true,
+                            True,
                             "sd_xl_refiner_1.0.safetensors [7440042bbd]",
                             10]
                     }
