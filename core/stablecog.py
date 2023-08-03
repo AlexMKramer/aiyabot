@@ -384,6 +384,14 @@ class StableCog(commands.Cog, name='Stable Diffusion', description='Create image
                 "denoising_strength": None,
                 "n_iter": queue_object.batch[0],
                 "batch_size": queue_object.batch[1],
+                "alwayson_scripts": {
+                    "refiner": {
+                        "args": [
+                            true,
+                            "sd_xl_refiner_1.0.safetensors [7440042bbd]",
+                            10]
+                    }
+                },
                 "styles": [
                     queue_object.styles
                 ]
