@@ -394,7 +394,7 @@ class DrawView(View):
             await interaction.response.edit_message(view=self)
             await interaction.followup.send("I may have been restarted. This button no longer works.", ephemeral=True)
 
-   @discord.ui.button(
+    @discord.ui.button(
         custom_id="button_remix",
         emoji="🎨")
     async def button_remix(self, button, interaction):
