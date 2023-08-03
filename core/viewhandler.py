@@ -397,7 +397,7 @@ class DrawView(View):
    @discord.ui.button(
         custom_id="button_remix",
         emoji="🎨")
-    async def button_roll(self, button, interaction):
+    async def button_remix(self, button, interaction):
         buttons_free = True
         try:
             # check if the output is from the person who requested it
