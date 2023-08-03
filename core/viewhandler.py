@@ -393,6 +393,54 @@ class DrawView(View):
             button.disabled = True
             await interaction.response.edit_message(view=self)
             await interaction.followup.send("I may have been restarted. This button no longer works.", ephemeral=True)
+
+   @discord.ui.button(
+        custom_id="button_remix",
+        emoji="🎨")
+    async def button_roll(self, button, interaction):
+        buttons_free = True
+        try:
+            # check if the output is from the person who requested it
+            if settings.global_var.restrict_buttons == 'True':
+                if interaction.user.id != self.input_tuple[0].author.id:
+                    buttons_free = False
+            if buttons_free:
+                # update the tuple with a new seed
+                new_seed = list(self.input_tuple)
+                new_seed[10] = random.randint(0, 0xFFFFFFFF)
+                # set batch to 1
+                if settings.global_var.batch_buttons == "False":
+                    new_seed[13] = [1, 1]
+                seed_tuple = tuple(new_seed)
+                new_style = random.choice(list(global_var.style_names.keys()))
+
+                print(f'Remix -- {interaction.user.name}#{interaction.user.discriminator} -- Prompt: {seed_tuple[1]}')
+
+                # set up the draw dream and do queue code again for lack of a more elegant solution
+                draw_dream = stablecog.StableCog(self)
+                user_queue_limit = settings.queue_check(interaction.user)
+                if queuehandler.GlobalQueue.dream_thread.is_alive():
+                    if user_queue_limit == "Stop":
+                        await interaction.response.send_message(content=f"Please wait! You're past your queue limit of {settings.global_var.queue_limit}.", ephemeral=True)
+                    else:
+                        queuehandler.GlobalQueue.queue.append(queuehandler.DrawObject(stablecog.StableCog(self), *seed_tuple, *new_style, DrawView(seed_tuple)))
+                else:
+                    await queuehandler.process_dream(draw_dream, queuehandler.DrawObject(stablecog.StableCog(self), *seed_tuple, *new_style, DrawView(seed_tuple)))
+
+                if user_queue_limit != "Stop":
+                    await interaction.response.send_message(
+                        f'<@{interaction.user.id}>, {settings.messages()}\nQueue: '
+                        f'``{len(queuehandler.GlobalQueue.queue)}`` - ``{seed_tuple[1]}``'
+                        f'\nNew Seed:``{seed_tuple[10]}``'
+                        f'\nNew Style:``{new_style}``')
+            else:
+                await interaction.response.send_message("You can't use other people's 🎲!", ephemeral=True)
+        except Exception as e:
+            print('The dice roll button broke: ' + str(e))
+            # if interaction fails, assume it's because aiya restarted (breaks buttons)
+            button.disabled = True
+            await interaction.response.edit_message(view=self)
+            await interaction.followup.send("I may have been restarted. This button no longer works.", ephemeral=True)
     
     # the ⬆️ button will upscale the selected image
     @discord.ui.button(
