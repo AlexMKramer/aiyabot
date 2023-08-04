@@ -388,7 +388,7 @@ class StableCog(commands.Cog, name='Stable Diffusion', description='Create image
                     "refiner": {
                         "args": [
                             True,
-                            "sd_xl_refiner_1.0.safetensors [7440042bbd]",
+                            "sd_xl_refiner_1.0.safetensors [8d0ce6c016]",
                             10]
                     }
                 },
